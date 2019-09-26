@@ -1,0 +1,107 @@
+version: '3.7'
+# Removed subprocess.CalledProcessError: Command '['/usr/local/bin/docker-credential-desktop', 'get']' returned non-zero exit status 1
+# I had this:
+# cat ~/.docker/config.json
+# {"auths":{},"credsStore":"", "credsStore":"desktop","stackOrchestrator":"swarm"}
+# I updated to this:
+# {"auths":{},"credsStore":"","stackOrchestrator":"swarm"}
+services:
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3.5.3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - currency-microservices-network
+
+  naming-server:
+    build: netflix-eureka-naming-server
+    container_name: naming-server
+    ports:
+      - "8761:8761"
+      - "28787:8787"
+    networks:
+      - currency-microservices-network
+
+  zipkin-server:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    environment:
+      - STORAGE_TYPE=mem
+      # Uncomment to enable debug logging
+      # - JAVA_OPTS=-Dlogging.level.zipkin=DEBUG
+    depends_on: # Start the depends_on first
+      - rabbitmq
+    environment:
+      - RABBIT_URI=amqp://guest:guest@rabbitmq:5672
+    ports:
+      - 9411:9411
+    networks:
+      - currency-microservices-network
+
+  currency-exchange-service:
+    image: in28min/currency-exchange-service:0.0.1-SNAPSHOT
+    container_name: currency-exchange-service
+    #build:
+      #context: ../05-simple-microservices/currency-exchange-service
+      #context: .
+      #dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    restart: always
+    depends_on: # Start the depends_on first
+      - rabbitmq
+      - zipkin-server
+      - naming-server
+      - zuul-api-gateway
+    environment:
+      - RABBIT_URI=amqp://guest:guest@rabbitmq:5672
+    networks:
+      - currency-microservices-network
+
+  currency-conversion-service:
+    image: in28min/currency-conversion-service:0.0.1-SNAPSHOT
+    container_name: currency-conversion-service
+    #build:
+      #context: ../05-simple-microservices/currency-conversion-service
+      #context: .
+      #dockerfile: Dockerfile
+    ports:
+      - "8100:8100"
+    restart: always
+    depends_on: # Start the depends_on first
+      - rabbitmq
+      - zipkin-server
+      - currency-exchange-service
+      - naming-server
+      - zuul-api-gateway
+    environment:
+      - CURRENCY_EXCHANGE_URI=http://currency-exchange-service:8000
+      - RABBIT_URI=amqp://guest:guest@rabbitmq:5672
+    networks:
+      - currency-microservices-network
+
+  zuul-api-gateway:
+    image: in28min/netflix-zuul-api-gateway-server:0.0.1-SNAPSHOT
+    container_name: zuul-api-gateway
+    #build:
+      #context: ../05-simple-microservices/currency-conversion-service
+      #context: .
+      #dockerfile: Dockerfile
+    ports:
+      - "8765:8765"
+    restart: always
+    depends_on: # Start the depends_on first
+      - rabbitmq
+      - zipkin-server
+      - naming-server
+    environment:
+      - RABBIT_URI=amqp://guest:guest@rabbitmq:5672
+    networks:
+      - currency-microservices-network
+  
+# Networks to be created to facilitate communication between containers
+networks:
+  currency-microservices-network:
