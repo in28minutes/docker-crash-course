@@ -93,8 +93,12 @@ ENTRYPOINT ["java","-cp","app:app/lib/*","com.in28minutes.rest.webservices.restf
 ### JIB
 
 - https://github.com/GoogleContainerTools/jib/tree/master/jib-maven-plugin#quickstart
+
 - https://github.com/GoogleContainerTools/jib/blob/master/docs/faq.md
-- `<useCurrentTimestamp>true</useCurrentTimestamp>` - https://github.com/GoogleContainerTools/jib/issues/413 
+
+#### "useCurrentTimestamp - true" discussion
+- https://github.com/GooleContainerTools/jib/blob/master/docs/faq.md#why-is-my-image-created-48-years-ago 
+- https://github.com/GoogleContainerTools/jib/issues/413 
 
 ```
 <plugin>

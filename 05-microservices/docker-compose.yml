@@ -11,7 +11,10 @@ services:
       - currency-compose-network
 
   naming-server:
-    image: in28min/netflix-eureka-naming-server:0.0.1-SNAPSHOT
+    #image: in28min/netflix-eureka-naming-server:0.0.1-SNAPSHOT
+    build:
+      context: netflix-eureka-naming-server
+      dockerfile: Dockerfile
     ports:
       - "8761:8761"
     restart: always
@@ -34,7 +37,10 @@ services:
 
 
   zuul-api-gateway:
-    image: in28min/netflix-zuul-api-gateway-server:0.0.1-SNAPSHOT
+    #image: in28min/netflix-zuul-api-gateway-server:0.0.1-SNAPSHOT
+    build:
+      context: netflix-zuul-api-gateway-server
+      dockerfile: Dockerfile
     environment:
       RABBIT_URI: amqp://guest:guest@rabbitmq:5672
     ports:
@@ -48,7 +54,10 @@ services:
       - currency-compose-network
 
   currency-exchange-service:
-    image: in28min/currency-exchange-service:0.0.1-SNAPSHOT
+    #image: in28min/currency-exchange-service:0.0.1-SNAPSHOT
+    build:
+      context: currency-exchange-service
+      dockerfile: Dockerfile    
     environment:
       RABBIT_URI: amqp://guest:guest@rabbitmq:5672
     ports:
@@ -62,7 +71,10 @@ services:
       - currency-compose-network
 
   currency-conversion-service:
-    image: in28min/currency-conversion-service:0.0.1-SNAPSHOT
+    #image: in28min/currency-conversion-service:0.0.1-SNAPSHOT
+    build:
+      context: currency-conversion-service
+      dockerfile: Dockerfile    
     ports:
       - "8100:8100"
     restart: always

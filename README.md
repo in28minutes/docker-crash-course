@@ -55,49 +55,142 @@ Look No Further!
 - Problem - Error creating the Docker image on MacOS - java.io.IOException: Cannot run program “docker-credential-osxkeychain”: error=2, No such file or directory
 - Solution - https://medium.com/@dakshika/error-creating-the-docker-image-on-macos-wso2-enterprise-integrator-tooling-dfb5b537b44e
 
-
+Removed subprocess.CalledProcessError: Command '['/usr/local/bin/docker-credential-desktop', 'get']' returned non-zero exit status 1
+I had this:
+`cat ~/.docker/config.json`
+`{"auths":{},"credsStore":"", "credsStore":"desktop","stackOrchestrator":"swarm"}`
+I updated to this:
+`{"auths":{},"credsStore":"","stackOrchestrator":"swarm"}`
 
 ## Course Overview
 
 ******* Course Overview *******
 
-Pivotal Cloud Foundry (PCF) provides a great cloud native platform to deploy Spring Boot Applications.
+Architectures are moving towards Microservices and Cloud. Docker makes it easy to containerize your applications and make them cloud ready.
 
-Spring Boot is the No 1 Java Framework to develop REST API and Microservices. 
+Docker is the No 1 Tool to Containerize your Java Spring Boot Applications. Learning Docker would help you streamline your deployment processes and experiment easily with new frameworks and tools. 
 
-In this course, we deploy a variety of Spring Boot Applications to the Cloud:
+In this handson course, we will containerize - create docker images and create containers - for a variety of Spring Boot Applications:
 - REST APIs - Hello World and Todo - Jar
 - Todo Web Application War
 - Full Stack Application with React and Spring Boot
 - CCS and CES Microservices
-- Route Services
+- Eureka Naming Server and Zuul API Gateway
 
-This course would be a perfect first step as an introduction to PCF and the Cloud.
+This course would be a perfect first step as an introduction to Docker.
 
-You will be using deploying a variety of projects to Pivotal Cloud Foundry (PCF) . These projects are created with  React (Frontend Framework), Spring Boot (REST API Framework), Spring (Dependency Management), Spring Security (Authentication and Authorization - Basic and JWT), BootStrap (Styling Pages), Maven (dependencies management), Node (npm), Visual Studio Code (TypeScript IDE), Eclipse (Java IDE) and Tomcat Embedded Web Server. We will help you set up each one of these.
+You will be using containerizing a variety of projects created with  React (Frontend Framework), Spring Boot (REST API Framework), Spring (Dependency Management), Spring Security (Authentication and Authorization - Basic and JWT), BootStrap (Styling Pages), Maven (dependencies management), Node (npm), Visual Studio Code (TypeScript IDE), Eclipse (Java IDE) and Tomcat Embedded Web Server. We will help you set up each one of these.
 
 ## What you'll learn
-- You will Learn the Fundamentals of Pivotal Cloud Foundry ( PCF ) from Zero, no previous experience required
-- You will learn to deploy Spring Boot REST API to Pivotal Cloud Foundry ( PCF )
-- You will learn to deploy Java, Spring Boot Full Stack Applications to Pivotal Cloud Foundry ( PCF )
-- You will be using a number of PCF Services - Databases, Spring Cloud Services including Service Registry, Config Server and Hystrix . 
-- You will learn how to Auto Scale applications based on load as well as deploy multiple instances behind a load balancer using Pivotal Cloud Foundry.
+- You will Learn the Fundamentals of Docker from Zero, no previous experience required
+- You will learn the important Docker Concepts - Registry, Repository, Tag, Image,  Container and Volumes
+- You will learn the important Docker commands  
+- You will understand the Docker Architecture
+- You will create Docker images for 8 Java Spring Boot Projects
+- You will learn to use Dockerfile to Automate Building of your Docker Image
+- You will learn to use various maven plugins - Dockerfile Spotify Plugin, JIB Plugin and Fabric8 Docker Maven Plugin - to create Docker images
+- You will learn to create best practices with creating Docker Images - Improve Caching of Docker Images and create Multi Stage Docker Builds.
+- You will Containerize Java Spring Boot Todo Web Application talking with MySQL
+- You will Containerize Java Spring Boot React Full Stack Application with Docker
+- You will Containerize CCS, CES Microservices, Eureka Naming Server and Zuul API Gateway with Docker and Run them using Docker Compose
+- You will learn to run MySQL, RabbitMQ and Zipkin as Docker Containers
+- You will learn the basics of Docker Networking - HOST, BRIDGE and NONE
+- You will learn to use Docker Compose to Manage Your Containers
+- You will learn the basics of Microservices
 - You will Join 250,000 Learners having AMAZING LEARNING Experiences with in28Minutes
 
 ## Requirements
 - You have an attitude to learn while having fun :)
 - You have some programming experience with Java, Spring and Spring Boot
-- You DO NOT need to have any experience with Pivotal Cloud Foundry
+- You DO NOT need to have any experience with Docker
 - We will help you install Eclipse, Visual Studio Code, Git client, Docker Desktop and Node JS (for npm)
 
 ## Who is this course for
 - You are a Java Spring Boot developer getting started with the Cloud
-- You want to get your Java applications deployed to PCF (Pivotal Cloud Foundry) Quickly
-- You are a Java Developer and You are curious about PCF and the Cloud
-- You want to learn to deploy a Java Spring Boot full stack application to PCF (Pivotal Cloud Foundry) 
-- You want to learn to deploy Spring Boot Microservices with Service Registry, Config Server, Distributed Tracing and Load Balancing to PCF (Pivotal Cloud Foundry) 
+- You want to containerize your Java applications with Docker
+- You are a Java Developer and You are curious about Docker
+- You want to learn to containerize a Java Spring Boot full stack application with Docker
+- You want to learn to play with Docker and Spring Boot Microservices - Service Registry, Distributed Tracing and Zuul API Gateway
 
 ## Step By Step Details
+
+### Introduction to the Course
+- 00 Step 01 - Deploy Spring Boot Applications to Docker - Course Overview
+- 00 Step 02 - Deploy Spring Boot Applications to Docker - Getting Started
+
+### Getting Started with Docker
+- 01 Step 01 - Installing Docker - Docker
+- 01 Step 02 - Your First Docker Usecase - Deploy a Spring Boot Application
+- 01 Step 03 - Important Docker Concepts - Registry, Repository, Tag, Image and Container
+- 01 Step 04 - Playing with Docker Images and Containers
+- 01 Step 05 - Understanding Docker Architecture - Docker Client, Docker Engine
+- 01 Step 06 - Why is Docker Popular
+- 01 Step 07 - Playing with Docker Images
+- 01 Step 08 - Playing with Docker Containers
+- 01 Step 09 - Playing with Docker Commands - stats, system
+- 01 Step 10 - Importing Docker Projects
+
+### Containerizing Java Spring Boot Hello World Rest API with Docker
+- 02 Step 01 - Setting up 01 Spring Boot Hello World Rest API in Local 
+- 02 Step 02 - Build Docker Image Manually for 01 Hello World Rest API
+- 02 Step 03 - Use Dockerfile to Build Docker Image
+- 02 Step 04 - Understanding Docker Image Layers, Caching and Dockerfile Instructions
+- 02 Step 05 - Using Dockerfile Spotify Plugin to Create Docker Images
+- 02 Step 06 - Create a generic reusable Dockerfile
+- 02 Step 07 - Improving Caching of Docker Images by Adding Libraries in a Separate Step
+- 02 Step 08 - Using JIB Plugin to Create Docker Images
+- 02 Step 09 - Using Fabric8 Docker Maven Plugin to Create Docker Images
+
+### Containerizing Java Spring Boot Todo Web Application with Docker
+- 03 Step 01 - Setting up 02 Spring Boot Todo Web Application in Local 
+- 03 Step 02 - Create Docker Image for Spring Boot Todo Web Application
+- 03 Step 03 - Understanding ENTRYPOINT, CMD, COPY and ADD instructions
+- 03 Step 04 - Pushing 02 Spring Boot Todo Web Application to Docker Hub
+
+### Containerizing Java Spring Boot Todo Web Application using MySQL with Docker
+- 04 Step 01 - Code Review of 03 Todo Web Application MySQL
+- 04 Step 02 - Running MySQL as Docker Container on Local
+- 04 Step 03 - Connect Spring Boot Todo Web App to MySQL on Local
+- 04 Step 04 - Create Docker Image for 03 Todo Web Application and Use Link to connect
+- 04 Step 05 - Exploring Docker Networking - HOST, BRIDGE and NONE
+- 04 Step 06 - Creating a Custom Network and Connect MySQL and WebApplication to the network
+- 04 Step 07 - Using Docker Volumes to Persist Data
+- 04 Step 08 - Playing with Docker Compose
+
+### Containerize Java Spring Boot React Full Stack Application with Docker
+- 05 Step 01 - Exploring 04 Java Full Stack Spring Boot React App
+- 05 Step 02 - Running React Frontend in Local
+- 05 Step 03 - Containerizing Java REST API Backend
+- 05 Step 04 - Creating Multi Stage Docker Build for React Frontend Code
+- 05 Step 05 - Improve Front End Docker Build - dockerignore
+- 05 Step 06 - Using Multi Stage Docker Build for Java REST API Backend
+- 05 Step 07 - Running Java REST API Backend Docker Image
+- 05 Step 08 - Exploring Docker Compose
+- 05 Step 09 - Running Full Stack Application with Docker Compose
+- 05 Step 10 - Using Docker Compose for Java Spring Boot Todo Web Application with MySQL
+
+### Getting started with CCS and CES Microservices on Docker
+- 06 Step 01 - Introduction to Microservices
+- 06 Step 02 - Advantages of Microservices
+- 06 Step 03 - Understanding Docker and Microservices - An Amazing Combo
+- 06 Step 04 - Overview of CCS and CES Spring Boot Microservices
+- 06 Step 05 - Create Docker Images and Containers for CCS and CES Microservices
+- 06 Step 06 - Run CCS and CES Microservices using Docker Compose
+
+### Using Eureka Naming Service with Spring Boot Microservices and Docker
+- 07 Step 01 - Understanding the need for Service Registry
+- 07 Step 02 - Create Docker Images for Eureka Naming Server
+- 07 Step 03 - Configure and Run CES and CCS Microservices with Eureka Service
+
+### Using Zuul API Gateway with Spring Boot Microservices and Docker
+- 08 Step 01 - Configure CES and CCS Microservices with Zuul API Gateway
+- 08 Step 02 - Use Docker Compose to Run Microservices with Zuul
+
+### Distributed Tracing with Zipkin and RabbitMq
+- 09 Step 01 - Introduction to Zipkin and Update Microservices to Connect to Zipkin
+- 09 Step 02 - Using Docker Compose to Launch Zipkin, RabbitMq and Microservices
+- 09 Step 03 - Running Zipkin, RabbitMq and Microservices
+- 09 Step 04 - Thank You
 
 
 
@@ -872,49 +965,12 @@ b35b36685158        About a minute ago   /bin/sh -c #(nop) ADD file:d486f433c28d
   634  docker container prune
   635  docker container ls
   636  clear
-  637  docker events
-  638  docker run -p 5000:5000 -d in28min/todo-rest-api-h2:0.0.1-SNAPSHOT
-  639  docker top
-  640  docker top c710
-  641  clear
-  642  docker stats
-  643  clear
-  644  docker container ls
-  645  docker container stop c710
-  646  docker run -p 5000:5000 -d in28min/todo-rest-api-h2:0.0.1-SNAPSHOT
-  647  docker run -p 5001:5000 -m 512m --cpu-quota 5000  -d in28min/todo-rest-api-h2:0.0.1-SNAPSHOT
-  648  docker container logs 3fb
-  649  docker container logs -f 3fb
-  650  docker container stop 3fb
-  651  docker run -p 5001:5000 -m 512m --cpu-quota 50000 -d in28min/todo-rest-api-h2:0.0.1-SNAPSHOT
-  652  docker container logs -f 57f
-  653  clear
-  654  docker system df
-  655  docker container prune
-  656  docker image prune
-  657  clear
-  658  docker images
-  659  docker image prune -a
-  660  clear
-  661  docker images
-  662  docker pull in28min/todo-rest-api-h2:1.0.0.RELEASE
-  663  clear
-  664  docker container prune
-  665  docker container ls
-  666  clear
-  667  docker container prune
-  668  docker container ls -a
-  669  docker container stop 57f a6d
-  670  docker container ls -a
-  671  docker container prune
-  672  docker container ls -a
-  673  docker images
-  674  clear
-  675  docker image prune
-  676  docker images
-  677  docker image prune
-  678  clear
-  679  history
+
+docker events
+docker top c710
+docker stats
+docker run -m 512m --cpu-quota 50000
+docker system df
 
     499  docker container ls
   500  docker container stop 1b1
@@ -933,9 +989,26 @@ b35b36685158        About a minute ago   /bin/sh -c #(nop) ADD file:d486f433c28d
   513  docker stats
   514  history
 
+docker-compose config
+docker-compose images
+docker-compose ps
+docker-compose top
+docker-compose pause
+docker-compose unpause
+docker-compose rm
+docker-compose build
+docker-compose events
+
   Deleted Networks:
 web-application-mysql-network
 03-todo-web-application-mysql_todo-web-application-network
 currency-network
 05-microservices_currency-compose-network
 ```
+
+```
+stop => SIGTERM => graceful shutdown
+kill => SIGKILL => immediately terminates the process
+A minimal Docker image based on Alpine Linux
+```
+
