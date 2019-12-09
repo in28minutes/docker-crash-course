@@ -1,5 +1,8 @@
 # Docker Crash Course for Java Developers
 
+[![Image](https://www.springboottutorial.com/images/Course-DockerCrashCourseForJavaSpringBootDevelopers.png "Docker Crash Course for Java Spring Boot Developers")](https://www.udemy.com/course/docker-course-with-java-and-spring-boot-for-beginners/)
+
+
 ## Learn Docker creating containers for Spring Boot APIs and Microservices
 
 Learn Docker Fundamentals? Yes.   Create Containers for Microservices? Yes.     Create Containers for Full Stack Applications? Yes. Of Course. Hands-on? Of course.
@@ -193,13 +196,6 @@ You will be using containerizing a variety of projects created with  React (Fron
 - 09 Step 04 - Thank You
 
 
-
-```sh
-for file in *; do mv "${file}" "${file//-/ }"; done
-for file in *; do mv "${file}" "${file//   / - }"; done
-for file in *; do mv "${file}" "${file//01 Step/Step}"; done
-```
-
 ## Diagrams
 
 - Courtesy http://viz-js.com/
@@ -384,17 +380,13 @@ web-application-mysql-network
 currency-network
 05-microservices_currency-compose-network
 ```
+### Troubleshooting
+- Refer our TroubleShooting Guide - https://github.com/in28minutes/in28minutes-initiatives/tree/master/The-in28Minutes-TroubleshootingGuide-And-FAQ
 
-## Next Steps
+## Youtube Playlists - 500+ Videos
 
-## Todo
-- Course Promotion Emails/Posts
-  - 2 Emails on Udemy
-  - 2 Emails to Email List
-- Create YouTube Course Preview Video
-  - Add YouTube Course Preview Video as End Video for all videos
-  - Make it the YouTube Default Video
-- Release atleast 20 small videos - one a day on Youtube
-- Do atleast 3 Youtube live sessions
-- After a Month
-  - UFB and Packt
+[Click here - 30+ Playlists with 500+ Videos on Spring, Spring Boot, REST, Microservices and the Cloud](https://www.youtube.com/user/rithustutorials/playlists?view=1&sort=lad&flow=list)
+
+## Keep Learning in28Minutes
+
+in28Minutes is creating amazing solutions for you to learn Spring Boot, Full Stack and the Cloud - Docker, Kubernetes, AWS, React, Angular etc. - [Check out all our courses here](https://github.com/in28minutes/learn)
