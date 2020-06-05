@@ -277,7 +277,7 @@ docker container exec unruffled_tereshkova ls /tmp
 docker container cp target/hello-world-rest-api.jar 54cf414254e48d5f68c4d468b2dd4cbdd95d17f9e2074fdb9df7f64987697f2b:/tmp
 docker container commit unruffled_tereshkova in28min/hello-world-rest-api:manual 
 docker run -p 8080:8080 in28min/hello-world-rest-api:manual
-docker container commit --change='CMD ["java","-jar","/tmp/hello-world-rest-api.jar"]' unruffled_tereshkova in28min:hello-world-rest-api:manual2
+docker container commit --change="CMD ["java","-jar","/tmp/hello-world-rest-api.jar"]" unruffled_tereshkova in28min:hello-world-rest-api:manual2
 docker run -p 8080:8080 in28min/hello-world-rest-api:manual2
 docker inspect in28min/hello-world-rest-api:dockerfile1
 docker history in28min/hello-world-rest-api:dockerfile1
